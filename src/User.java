@@ -117,7 +117,7 @@ public class User {
             e.printStackTrace();
         }
     }
-    public void findUser(User user) {
+    public boolean findUser(User user) {
         List<String> logInInfo = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         SaveUser.users = getUsersFromFile();
@@ -128,9 +128,11 @@ public class User {
         if (SaveUser.users.containsKey(hashcode(logInInfo.get(0),logInInfo.get(1)))) {
             User newLogIn = SaveUser.users.get(user.hashCode() + "");
             System.out.println("Welcome :)");
+            return true;
         } else {
             System.out.println("Sorry, we didn't find your account.\n" +
                     "If you registered before, please enter your info more carefully.\n");
+            return false;
         }
     }
 }

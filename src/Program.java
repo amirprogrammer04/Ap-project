@@ -22,23 +22,11 @@ public class Program {
         }
     }
     public static void logIn(){
-        List <String> list=new ArrayList<String>();
-        list.add("A) Login as a Customer");
-        list.add("B) Login as a Seller");
-        while (true) {
-            for (String str:list)
-                System.out.println(str);
-            Scanner scanner=new Scanner(System.in);
-            String input=scanner.next();
-            if (input.equals("A")) {
-                Customer customer = new Customer();
-                customer.findUser(customer);
-            } else if (input.equals("B")) {
-                Seller seller=new Seller();
-                seller.findUser(seller);
-            } else
-                System.out.println("Please try again");
-            }
+        boolean flag=false;
+        do {
+                User user = new User();
+                flag=user.findUser(user);
+            }while (!flag);
         }
     public static void singIn(){
         List <String> list=new ArrayList<String>();
