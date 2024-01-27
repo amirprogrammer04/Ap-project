@@ -12,7 +12,6 @@ import java.util.*;
 
 public class Customer extends User {
 
-
     public void setKeyList(){
         keyList.add("FirstName");
         keyList.add("LastName");

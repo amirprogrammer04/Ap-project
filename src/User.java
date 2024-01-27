@@ -11,6 +11,7 @@ import java.util.*;
 public class User {
     protected Map<String,String> info=new HashMap<>();
     protected transient List<String> keyList=new ArrayList<>();
+    public Map <String,Product> products=new HashMap<>();
 
     public String HashCode() {
         String username = (String) info.get("UserName");
@@ -107,9 +108,10 @@ public class User {
         }
     }
     public  void addUser(User user) {
-            String key = user.HashCode(); // Use hashCode as the key
+        String key = user.HashCode(); // Use hashCode as the key
         SaveUser.users.put(key, user);
         saveToFile();
+        Environment environment=new Environment(user);
     }
     public void saveToFile() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -117,7 +119,6 @@ public class User {
         try (FileWriter writer = new FileWriter("users.json")) {
             writer.write(json);
         } catch (IOException e) {
-            System.out.println("saveToFile");
             e.printStackTrace();
         }
     }
@@ -130,7 +131,7 @@ public class User {
         System.out.println("Enter your Password: ");
         logInInfo.add(scanner.nextLine());
         if (SaveUser.users.containsKey(hashcode(logInInfo.get(0),logInInfo.get(1)))) {
-            User newLogIn = SaveUser.users.get(user.hashCode() + "");
+            User newLogIn = SaveUser.users.get(user.HashCode());
             System.out.println("Welcome :)");
             return true;
         } else {
