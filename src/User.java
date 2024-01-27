@@ -10,7 +10,6 @@ import java.util.*;
 
 public class User {
     protected Map<String,String> info=new HashMap<>();
-    protected transient Set <String> usernames=new HashSet<>();
     protected transient List<String> keyList=new ArrayList<>();
 
     public String HashCode() {
@@ -41,7 +40,12 @@ public class User {
         return result.toString();
     }
     public void setInfo(User user){
-        SaveUser.users=User.getUsersFromFile();
+            SaveUser.users=User.getUsersFromFile();
+            Collection<User> userList=  SaveUser.users.values();
+            for (User k: userList ){
+                SaveUser.usernames.add(k.info.get("UserName"));
+                System.out.println(k.info.get("UserName"));
+            }
             setKeyList();
             Scanner scanner = new Scanner(System.in);
             String str;
@@ -57,8 +61,8 @@ public class User {
                         info.put(input, str);
                         try {
                             if (input.equals("UserName")) {
-                                if (!usernames.contains(str))
-                                    usernames.add(str);
+                                if (!SaveUser.usernames.contains(str))
+                                    SaveUser.usernames.add(str);
                                 else
                                     throw new Exception();
                             }

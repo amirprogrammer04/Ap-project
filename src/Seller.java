@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 public class Seller extends User{
-    private Map <Integer,Products> mapOfProducts=new HashMap<>();
+    private Map <String,Products> mapOfProducts=new HashMap<>();
 
     @Override
     public boolean equals(Object o) {
