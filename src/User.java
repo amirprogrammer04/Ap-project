@@ -8,15 +8,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-public abstract class User {
+public class User {
     protected Map<String,String> info=new HashMap<>();
-    protected Set <String> usernames=new HashSet<>();
-
-    protected List<String> keyList=new ArrayList<>();
-    public static Map<String,User> users=new HashMap<>();
-    public User() {
-        // Default constructor with no arguments
-    }
+    protected transient Set <String> usernames=new HashSet<>();
+    protected transient List<String> keyList=new ArrayList<>();
 
     public String HashCode() {
         String username = (String) info.get("UserName");
@@ -46,7 +41,7 @@ public abstract class User {
         return result.toString();
     }
     public void setInfo(User user){
-        users=User.getUsersFromFile();
+        SaveUser.users=User.getUsersFromFile();
             setKeyList();
             Scanner scanner = new Scanner(System.in);
             String str;
@@ -56,7 +51,7 @@ public abstract class User {
                     for (String input : keyList) {
                     boolean flag;
                      do {
-                         flag =true;
+                        flag =true;
                         System.out.println("Enter your " + input + ": ");
                         str = scanner.nextLine();
                         info.put(input, str);
@@ -97,25 +92,24 @@ public abstract class User {
         }
         }
     }
-    public abstract void setKeyList();
+    public void setKeyList(){}
     public static Map<String, User> getUsersFromFile() {
         try (FileReader reader = new FileReader("users.json")) {
             Gson gson = new Gson();
             Type type = new TypeToken<Map<String, User>>(){}.getType();
             return gson.fromJson(reader, type);
         } catch (IOException e) {
-            System.out.println("getUsersFromFile");
             return new HashMap<>(); // Return an empty map if file does not exist or cannot be read
         }
     }
     public  void addUser(User user) {
             String key = user.HashCode(); // Use hashCode as the key
-        users.put(key, user);
+        SaveUser.users.put(key, user);
         saveToFile();
     }
     public void saveToFile() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(users);
+        String json = gson.toJson(SaveUser.users);
         try (FileWriter writer = new FileWriter("users.json")) {
             writer.write(json);
         } catch (IOException e) {
@@ -126,13 +120,13 @@ public abstract class User {
     public void findUser(User user) {
         List<String> logInInfo = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        users = getUsersFromFile();
+        SaveUser.users = getUsersFromFile();
         System.out.println("Enter your Username: ");
         logInInfo.add(scanner.nextLine());
         System.out.println("Enter your Password: ");
         logInInfo.add(scanner.nextLine());
-        if (users.containsKey(user.hashCode() + "")) {
-            User newLogIn = users.get(user.hashCode() + "");
+        if (SaveUser.users.containsKey(hashcode(logInInfo.get(0),logInInfo.get(1)))) {
+            User newLogIn = SaveUser.users.get(user.hashCode() + "");
             System.out.println("Welcome :)");
         } else {
             System.out.println("Sorry, we didn't find your account.\n" +

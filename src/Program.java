@@ -18,12 +18,10 @@ public class Program {
                 singIn();
             } else {
                 System.out.println("Invalid input\nPlease try again");
-                continue;
             }
         }
     }
     public static void logIn(){
-        User user;
         List <String> list=new ArrayList<String>();
         list.add("A) Login as a Customer");
         list.add("B) Login as a Seller");
@@ -33,11 +31,11 @@ public class Program {
             Scanner scanner=new Scanner(System.in);
             String input=scanner.next();
             if (input.equals("A")) {
-                user= new Customer();
-                user.findUser(user);
+                Customer customer = new Customer();
+                customer.findUser(customer);
             } else if (input.equals("B")) {
-                user=new Seller();
-                user.findUser(user);
+                Seller seller=new Seller();
+                seller.findUser(seller);
             } else
                 System.out.println("Please try again");
             }

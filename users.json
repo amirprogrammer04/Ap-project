@@ -1,26 +1,24 @@
 {
-  "438fde1db605c94100f76b7ecfe6788774911c88e13b583fa382f7760854c6d2": {
-    "mapOfFavoriteProducts": {},
+  "961b6dd3ede3cb8ecbaacbd68de040cd78eb2ed5889130cceb4c49268ea4d506": {
     "info": {
-      "UserName": "Steven",
-      "Address": "Tehran",
-      "FirstName": "Amirhossein",
-      "PhoneNumber": "09197534129",
-      "LastName": "Mohammadpour",
-      "E-mail Address": "mirhossein.mp004@gmail.com",
-      "Password": "steven"
-    },
-    "usernames": [
-      "Steven"
-    ],
-    "keyList": [
-      "FirstName",
-      "LastName",
-      "UserName",
-      "PhoneNumber",
-      "Address",
-      "E-mail Address",
-      "Password"
-    ]
+      "UserName": "a",
+      "Address": "a",
+      "FirstName": "a",
+      "PhoneNumber": "a",
+      "LastName": "a",
+      "E-mail Address": "a",
+      "Password": "a"
+    }
+  },
+  "d5e4a31f05b3782ae6475f554cae3aba91892121d1a8969baee2f041d4ba121d": {
+    "info": {
+      "UserName": "amir",
+      "Address": "amir",
+      "FirstName": "Amir",
+      "PhoneNumber": "amir",
+      "LastName": "amir",
+      "E-mail Address": "amir",
+      "Password": "amir"
+    }
   }
 }
