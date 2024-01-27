@@ -7,7 +7,7 @@ public class Program {
         initialList.add("A) Login");
         initialList.add("B) Sign in");
         boolean validate=false;
-        while (true) {
+        while (!validate) {
             for (String str:initialList)
                 System.out.println(str);
             Scanner scanner=new Scanner(System.in);
@@ -21,17 +21,38 @@ public class Program {
             }
         }
     }
-    public static void logIn(){
-        boolean flag=false;
+    public static void logIn() {
+        List<String> list = new ArrayList<String>();
+        list.add("A) Login as a Customer");
+        list.add("B) Login as a Seller");
+        boolean flag = false;
         do {
-                User user = new User();
-                flag=user.findUser(user);
-            }while (!flag);
-
-        }
+            for (String str:list)
+                System.out.println(str);
+            Scanner scanner=new Scanner(System.in);
+            String input=scanner.next();
+            if (input.equals("A")) {
+                   Customer customer= new Customer();
+                  flag=customer.findUser(customer);
+                  if (flag){
+                      CustomerMenu environment=new CustomerMenu(customer);
+                  environment.seeTheMainEnvironment();
+                  }
+            } else if (input.equals("B")) {
+                Seller seller=new Seller();
+                flag=seller.findUser(seller);
+                if (flag){
+                    SellerMenu environment=new SellerMenu(seller);
+                    environment.seeTheMainEnvironment();
+                }
+            } else {
+                System.out.println("Invalid input\nPlease try again");
+            }
+        }while (!flag);
+    }
     public static void singIn(){
         List <String> list=new ArrayList<String>();
-        list.add("A) Sign-in as a User");
+        list.add("A) Sign-in as a Customer");
         list.add("B) Sign-in as a Seller");
         while (true) {
             for (String str:list)
@@ -42,11 +63,14 @@ public class Program {
                 Customer customer=new Customer();
                 customer.setInfo(customer);
                 customer.addUser(customer);
+                CustomerMenu environment=new CustomerMenu(customer);
+                environment.seeTheMainEnvironment();
             } else if (input.equals("B")) {
                 Seller seller=new Seller();
                 seller.setInfo(seller);
                 seller.addUser(seller);
-
+                SellerMenu environment=new SellerMenu(seller);
+                environment.seeTheMainEnvironment();
             } else {
                 System.out.println("Invalid input\nPlease try again");
             }

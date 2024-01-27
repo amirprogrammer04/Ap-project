@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Environment {
-    protected transient List<String> keyList=new ArrayList<>();
-    User user;
-    public Environment(User user){
-        this.user=user;
+public class CustomerMenu {
+    public transient List<String> keyList=new ArrayList<>();
+    Customer customer;
+    public CustomerMenu(Customer customer){
+        this.customer=customer;
     }
     public void seeTheMainEnvironment(){
         setKeyList();
@@ -41,7 +41,8 @@ public class Environment {
             System.out.println("Do You Want To Add This Product To Your Favorite List?(Y/N)");
             String answer=scanner.nextLine();
             if (answer.equals("Y"))
-                user.products.put(selectedProduct.HashCode(),selectedProduct);
+                customer.products.put(selectedProduct.HashCode(),selectedProduct);
         }
+        seeTheMainEnvironment();
     }
 }

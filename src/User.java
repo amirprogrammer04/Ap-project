@@ -45,7 +45,6 @@ public class User {
             Collection<User> userList=  SaveUser.users.values();
             for (User k: userList ){
                 SaveUser.usernames.add(k.info.get("UserName"));
-                System.out.println(k.info.get("UserName"));
             }
             setKeyList();
             Scanner scanner = new Scanner(System.in);
@@ -111,7 +110,6 @@ public class User {
         String key = user.HashCode(); // Use hashCode as the key
         SaveUser.users.put(key, user);
         saveToFile();
-        Environment environment=new Environment(user);
     }
     public void saveToFile() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

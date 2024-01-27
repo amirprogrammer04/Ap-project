@@ -11,9 +11,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class Product {
-    protected Map<String,String> info=new HashMap<>();
-    protected transient List<String> keyList=new ArrayList<>();
-    public void setInfo(Product product){
+    public Map<String,String> info=new HashMap<>();
+    public transient List<String> keyList=new ArrayList<>();
+    public Product(){
+        setKeyList();
+    }
+    public void setInfo(Product product,User user){
         SaveProduct.products=Product.getProductsFromFile();
         setKeyList();
         Scanner scanner=new Scanner(System.in);
@@ -21,7 +24,7 @@ public class Product {
         boolean correct=false;
         while (!correct) {
             for (String input : keyList) {
-                System.out.println("Enter your " + input + ": ");
+                System.out.println("Enter Product's " + input + ": ");
                 str = scanner.nextLine();
                 info.put(input, str);
             }
@@ -36,6 +39,8 @@ public class Product {
                 str = scanner.nextLine();
                 if (str.equals("Y")) {
                     correct = true;
+                    user.products.put(product.HashCode(),product);
+                    flag=false;
                 } else if (str.equals("N")) {
                     product.info.clear();
                 } else {
@@ -62,6 +67,7 @@ public class Product {
         keyList.add("Colors");
         keyList.add("Category");
         keyList.add("Quantities");
+
     }
     public void addProduct(Product product){
         String key= product.HashCode();
