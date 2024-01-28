@@ -70,7 +70,7 @@ public class SellerMenu {
             }else
                 throw new Exception();
         }catch (Exception e){
-            System.out.println("Please Enter Valid input.");
+            System.out.println("Please Enter Valid Input.");
             seeTheMainEnvironment();
         }
     }
