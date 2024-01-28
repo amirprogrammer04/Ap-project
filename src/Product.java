@@ -69,6 +69,7 @@ public class Product {
         keyList.add("Date Of Produce");
         keyList.add("Colors");
         keyList.add("Category");
+        keyList.add("Price");
         keyList.add("Status");
     }
     public String HashCode() {

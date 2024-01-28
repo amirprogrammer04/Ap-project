@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Program {
     public static void main(String[] args) {
-        // حواست به تبدیل کردن تعداد یک کالا به عدد باشه.
         System.out.println("Welcome to your home\nWhich feature do you want?");
         List <String> initialList=new ArrayList<String>();
         initialList.add("A) Login");
