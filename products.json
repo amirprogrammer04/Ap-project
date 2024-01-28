@@ -1,35 +1,24 @@
 {
-  "4242d87c9590923e2a441f7825ebb896bad2d615535fb913381a917e7985f6c6": {
+  "0529bab1330edcf8781b4d4aa029c9be4ef6159e4c5dda64e32d156eb4d94141": {
     "info": {
-      "Status": "market",
-      "Colors": "market",
-      "Category": "market",
-      "Seller": "market",
-      "Code": "market",
-      "Date Of Produce": "market",
-      "Name": "market"
+      "Status": "product",
+      "Colors": "product",
+      "Category": "product",
+      "Seller": "product",
+      "Code": "product",
+      "Date Of Produce": "product",
+      "Name": "product"
     }
   },
-  "c88580681cd363a5afcd9694ace153c56611e3de4f75bdb2620059eb6664c4f4": {
+  "7515390258a87048508953202b72da30a791342630b2b17204e1cda21296e4f9": {
     "info": {
-      "Status": "markets",
-      "Colors": "markets",
-      "Category": "markets",
-      "Seller": "markets",
-      "Code": "markets",
-      "Date Of Produce": "markets",
-      "Name": "markets"
-    }
-  },
-  "9990e71889463dcbeb955a79d5bc96c15b60ccf5b3a49c4aa476ae055b3e5c4b": {
-    "info": {
-      "Status": "lal",
-      "Colors": "lal",
-      "Category": "lal",
-      "Seller": "lal",
-      "Code": "lal",
-      "Date Of Produce": "lal",
-      "Name": "lal"
+      "Status": "mk",
+      "Colors": "mk",
+      "Category": "mk",
+      "Seller": "mk",
+      "Code": "mk",
+      "Date Of Produce": "mk",
+      "Name": "mk"
     }
   }
 }

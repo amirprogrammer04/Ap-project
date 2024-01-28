@@ -20,9 +20,9 @@ public class Seller extends User{
         keyList.add("E-mail Address");
         keyList.add("Password");
     }
-    public static void saveToFileProducts(String fileName){
+    public static void saveToFileProducts(Seller seller,String fileName){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json = gson.toJson(SaveProduct.products);
+        String json = gson.toJson(seller.products);
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write(json);
         } catch (IOException e) {
@@ -57,7 +57,7 @@ public class Seller extends User{
                     SaveProduct.products.put(key,product);
                     seller.products.put(key,product);
                     Product.saveToFile();
-                    Seller.saveToFileProducts(seller.info.get("SellerName")+".json");
+                    Seller.saveToFileProducts(seller,seller.info.get("SellerName")+".json");
                     flag=false;
                 } else if (str.equals("N")) {
                     product.info.clear();
