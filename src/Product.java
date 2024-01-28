@@ -12,44 +12,42 @@ import java.util.*;
 
 public class Product {
     public Map<String,String> info=new HashMap<>();
-    public transient List<String> keyList=new ArrayList<>();
+    public static transient List<String> keyList=new ArrayList<>();
     public Product(){
-        setKeyList();
-    }
-    public void setInfo(Product product,User user){
-        SaveProduct.products=Product.getProductsFromFile();
-        setKeyList();
-        Scanner scanner=new Scanner(System.in);
-        String str;
-        boolean correct=false;
-        while (!correct) {
-            for (String input : keyList) {
-                System.out.println("Enter Product's " + input + ": ");
-                str = scanner.nextLine();
-                info.put(input, str);
-            }
-            System.out.println("Your Product Information is as follows:");
-            for (String input : keyList) {
-                System.out.println(input + ": " + info.get(input));
-            }
-            boolean flag;
-            do {
-                flag = false;
-                System.out.println("Correct?(Y/N)");
-                str = scanner.nextLine();
-                if (str.equals("Y")) {
-                    correct = true;
-                    user.products.put(product.HashCode(),product);
-                    flag=false;
-                } else if (str.equals("N")) {
-                    product.info.clear();
-                } else {
-                    flag = true;
-                }
-            } while (flag);
-        }
 
     }
+//    public void setInfo(Product product,User user){
+//        SaveProduct.products=Product.getProductsFromFile();
+//        Scanner scanner=new Scanner(System.in);
+//        String str;
+//        boolean correct=false;
+//        while (!correct) {
+//            for (String input : keyList) {
+//                System.out.println("Enter Product's " + input + ": ");
+//                str = scanner.nextLine();
+//                info.put(input, str);
+//            }
+//            System.out.println("Your Product Information is as follows:");
+//            for (String input : keyList) {
+//                System.out.println(input + ": " + info.get(input));
+//            }
+//            boolean flag;
+//            do {
+//                flag = false;
+//                System.out.println("Correct?(Y/N)");
+//                str = scanner.nextLine();
+//                if (str.equals("Y")) {
+//                    correct = true;
+//                    user.products.put(product.HashCode(),product);
+//                    flag=false;
+//                } else if (str.equals("N")) {
+//                    product.info.clear();
+//                } else {
+//                    flag = true;
+//                }
+//            } while (flag);
+//        }
+//    }
     public static Map<String, Product> getProductsFromFile() {
     try (FileReader reader = new FileReader("products.json")) {
         Gson gson = new Gson();
@@ -58,26 +56,28 @@ public class Product {
     } catch (IOException e) {
         return new HashMap<>(); // Return an empty map if file does not exist or cannot be read
     }
+}    public static Map<String, Product> getProductsFromFile(String fileName) {
+    try (FileReader reader = new FileReader(fileName)) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<String, Product>>(){}.getType();
+        return gson.fromJson(reader, type);
+    } catch (IOException e) {
+        return new HashMap<>(); // Return an empty map if file does not exist or cannot be read
+    }
 }
-    public void setKeyList(){
+    public static void setKeyList(){
         keyList.add("Name");
         keyList.add("Code");
         keyList.add("Seller");
         keyList.add("Date Of Produce");
         keyList.add("Colors");
         keyList.add("Category");
-        keyList.add("Quantities");
-
-    }
-    public void addProduct(Product product){
-        String key= product.HashCode();
-        SaveProduct.products.put(key,product);
-        saveToFile();
+        keyList.add("Status");
     }
     public String HashCode() {
-        String name = (String) info.get("Name");
-        String code = (String) info.get("Code");
-        String seller = (String) info.get("Seller");
+        String name =  info.get("Name");
+        String code =  info.get("Code");
+        String seller =  info.get("Seller");
         String input = name + code + seller;
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -96,7 +96,7 @@ public class Product {
         }
         return result.toString();
     }
-    public void saveToFile() {
+    public static void saveToFile() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(SaveProduct.products);
         try (FileWriter writer = new FileWriter("products.json")) {
@@ -117,10 +117,10 @@ public class Product {
         for (Product product: productList){
             productArrayList.add(product);
             if(product.info.get("Name").equals(productName)){
-                Collection<String> information=product.info.values();
+                Collection<String> information=product.info.keySet();
                 System.out.println((number++)+")");
                 for (String k: information){
-                    System.out.println(k);
+                    System.out.println(k+": "+product.info.get(k));
                 }
             }
         }

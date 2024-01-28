@@ -7,20 +7,25 @@ public class CustomerMenu {
     Customer customer;
     public CustomerMenu(Customer customer){
         this.customer=customer;
+        setKeyList();
     }
     public void seeTheMainEnvironment(){
-        setKeyList();
         int selectInt=1;
         for (String select: keyList){
             System.out.println(selectInt+") "+select);
             selectInt++;
         }
-        Scanner scanner=new Scanner(System.in);
+        try{
+            Scanner scanner=new Scanner(System.in);
         System.out.println("Enter Your Favorite Feature");
         selectInt=scanner.nextInt();
         if(selectInt==1){
             searchProducts();
         }
+    }catch (Exception e){
+        System.out.println("Invalid Input. Please Enter Valid input.");
+        seeTheMainEnvironment();;
+    }
     }
     public void setKeyList(){
         keyList.add("Search Products");

@@ -111,7 +111,7 @@ public class User {
         SaveUser.users.put(key, user);
         saveToFile();
     }
-    public void saveToFile() {
+    public static void saveToFile() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(SaveUser.users);
         try (FileWriter writer = new FileWriter("users.json")) {
