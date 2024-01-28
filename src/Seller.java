@@ -52,6 +52,12 @@ public class Seller extends User{
                 if (str.equals("Y")) {
                     correct = true;
                     seller.products.put(product.HashCode(),product);
+                    seller.products=Product.getProductsFromFile(seller.info.get("SellerName")+".json");
+                    String key= product.HashCode();
+                    SaveProduct.products.put(key,product);
+                    seller.products.put(key,product);
+                    Product.saveToFile();
+                    Seller.saveToFileProducts(seller.info.get("SellerName")+".json");
                     flag=false;
                 } else if (str.equals("N")) {
                     product.info.clear();
@@ -60,12 +66,7 @@ public class Seller extends User{
                 }
             } while (flag);
         }
-        seller.products=Product.getProductsFromFile(seller.info.get("SellerName")+".json");
-        String key= product.HashCode();
-        SaveProduct.products.put(key,product);
-        seller.products.put(key,product);
-        Product.saveToFile();
-        Seller.saveToFileProducts(seller.info.get("SellerName")+".json");
+
     }
 
 }

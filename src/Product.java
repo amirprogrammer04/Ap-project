@@ -13,9 +13,6 @@ import java.util.*;
 public class Product {
     public Map<String,String> info=new HashMap<>();
     public static transient List<String> keyList=new ArrayList<>();
-    public Product(){
-
-    }
 //    public void setInfo(Product product,User user){
 //        SaveProduct.products=Product.getProductsFromFile();
 //        Scanner scanner=new Scanner(System.in);
@@ -110,7 +107,7 @@ public class Product {
         String productName;
         Scanner scanner=new Scanner(System.in);
         SaveProduct.products=getProductsFromFile();
-        System.out.println("Enter Your Filename");
+        System.out.println("Enter: ");
         productName=scanner.nextLine();
         Collection<Product> productList=SaveProduct.products.values();
         int number=1;

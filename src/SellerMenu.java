@@ -26,10 +26,12 @@ public class SellerMenu {
                 seeTheMainEnvironment();
             } else if (select.equals("2")) {
                 seeProducts(seller);
+                seeTheMainEnvironment();
             } else
                 throw new Exception();
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("Please Enter Valid input.");
+            seeTheMainEnvironment();
         }
     }
     public void setKeyList(){
@@ -40,16 +42,19 @@ public class SellerMenu {
     public void seeProducts(Seller seller){
          Map<String,Product> products=Product.getProductsFromFile(seller.info.get("SellerName")+".json");
          Set <String> setKeys=products.keySet();
-         System.out.println("1");
          int counter=1;
-        System.out.println("2");
+         if (!products.isEmpty()){
          for (String str: setKeys){
-                System.out.println(counter+++") \n");
+                System.out.println(counter+++")");
                 Product product=products.get(str);
                 for (String string: product.info.keySet()){
                     System.out.println(string+": "+product.info.get(string));
                 }
          }
+         }else{
+             System.out.println("No Products Found!");
+         }
+
 
     }
 

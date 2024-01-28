@@ -21,10 +21,11 @@ public class CustomerMenu {
         selectInt=scanner.nextInt();
         if(selectInt==1){
             searchProducts();
+            seeTheMainEnvironment();
         }
     }catch (Exception e){
         System.out.println("Invalid Input. Please Enter Valid input.");
-        seeTheMainEnvironment();;
+        seeTheMainEnvironment();
     }
     }
     public void setKeyList(){
@@ -44,10 +45,10 @@ public class CustomerMenu {
                 System.out.println(properties+": "+ selectedProduct.info.get(properties));
             }
             System.out.println("Do You Want To Add This Product To Your Favorite List?(Y/N)");
-            String answer=scanner.nextLine();
+            String answer=scanner.next();
             if (answer.equals("Y"))
                 customer.products.put(selectedProduct.HashCode(),selectedProduct);
+                seeTheMainEnvironment();
         }
-        seeTheMainEnvironment();
     }
 }
