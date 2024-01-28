@@ -2,12 +2,14 @@ import java.util.*;
 
 public class Program {
     public static void main(String[] args) {
+        // حواست به تبدیل کردن تعداد یک کالا به عدد باشه.
         System.out.println("Welcome to your home\nWhich feature do you want?");
         List <String> initialList=new ArrayList<String>();
         initialList.add("A) Login");
         initialList.add("B) Sign in");
         boolean validate=false;
         while (!validate) {
+
             for (String str:initialList)
                 System.out.println(str);
             Scanner scanner=new Scanner(System.in);

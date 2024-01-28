@@ -21,6 +21,7 @@ public class SellerMenu {
         if(selectInt==1){
             Product product=new Product();
             product.setInfo(product,seller);
+            product.addProduct(product);
             seeTheMainEnvironment();
 //            boolean flag=true;
 //            do{
