@@ -23,7 +23,7 @@ public class Product {
     }
 }
 public static Map<String, Product> getProductsFromFile(String fileName) {
-    try (FileReader reader = new FileReader(fileName)) {
+    try (FileReader reader = new FileReader(fileName+".json")) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, Product>>(){}.getType();
         return gson.fromJson(reader, type);

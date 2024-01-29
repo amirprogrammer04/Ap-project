@@ -81,7 +81,7 @@ public class SellerMenu {
 
     }
     public ArrayList<Product> seeProducts(Seller seller){
-         Map<String,Product> products=Product.getProductsFromFile(seller.info.get("SellerName")+".json");
+         Map<String,Product> products=Product.getProductsFromFile(seller.info.get("SellerName"));
          Set <String> setKeys=products.keySet();
          ArrayList<Product> returnProduct = new ArrayList<>();
          int counter=1;
