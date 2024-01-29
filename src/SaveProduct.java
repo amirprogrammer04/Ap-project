@@ -4,10 +4,7 @@ import jdk.jfr.Category;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class SaveProduct {
     public static Map<String,Product> products=new HashMap<>();
@@ -17,8 +14,9 @@ public class SaveProduct {
          public  Category(String name){
              this.name=name;
          }
-        public static Set <String> categoryNameList=new HashSet<>();
+        public static List <String> categoryNameList=new ArrayList<>();
         public Map <String,Product> productMap=new HashMap<>();
+
 
     }
     public static void saveToFileProducts(Category category,String fileName){
@@ -30,4 +28,14 @@ public class SaveProduct {
             e.printStackTrace();
         }
     }
+    public static void saveToFileProducts(String fileName){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(categories.get(fileName).productMap);
+        try (FileWriter writer = new FileWriter(fileName+".json")) {
+            writer.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void saveToFileCategoryNameList
 }

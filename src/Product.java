@@ -13,38 +13,6 @@ import java.util.*;
 public class Product {
     public Map<String,String> info=new HashMap<>();
     public static transient List<String> keyList=new ArrayList<>();
-//    public void setInfo(Product product,User user){
-//        SaveProduct.products=Product.getProductsFromFile();
-//        Scanner scanner=new Scanner(System.in);
-//        String str;
-//        boolean correct=false;
-//        while (!correct) {
-//            for (String input : keyList) {
-//                System.out.println("Enter Product's " + input + ": ");
-//                str = scanner.nextLine();
-//                info.put(input, str);
-//            }
-//            System.out.println("Your Product Information is as follows:");
-//            for (String input : keyList) {
-//                System.out.println(input + ": " + info.get(input));
-//            }
-//            boolean flag;
-//            do {
-//                flag = false;
-//                System.out.println("Correct?(Y/N)");
-//                str = scanner.nextLine();
-//                if (str.equals("Y")) {
-//                    correct = true;
-//                    user.products.put(product.HashCode(),product);
-//                    flag=false;
-//                } else if (str.equals("N")) {
-//                    product.info.clear();
-//                } else {
-//                    flag = true;
-//                }
-//            } while (flag);
-//        }
-//    }
     public static Map<String, Product> getProductsFromFile() {
     try (FileReader reader = new FileReader("products.json")) {
         Gson gson = new Gson();

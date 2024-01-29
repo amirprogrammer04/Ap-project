@@ -57,7 +57,7 @@ public class User {
                      do {
                         flag =true;
                         System.out.println("Enter your " + input + ": ");
-                        str = scanner.nextLine();
+                        str = scanner.next();
                         info.put(input, str);
                         try {
                             if (input.equals("UserName")) {
@@ -80,7 +80,7 @@ public class User {
                 do {
                     flag=false;
                     System.out.println("Correct?(Y/N)");
-                str = scanner.nextLine();
+                str = scanner.next();
                 if (str.equals("Y")) {
                     correct = true;
                 }
@@ -125,9 +125,9 @@ public class User {
         Scanner scanner = new Scanner(System.in);
         SaveUser.users = getUsersFromFile();
         System.out.println("Enter your Username: ");
-        logInInfo.add(scanner.nextLine());
+        logInInfo.add(scanner.next());
         System.out.println("Enter your Password: ");
-        logInInfo.add(scanner.nextLine());
+        logInInfo.add(scanner.next());
         if (SaveUser.users.containsKey(hashcode(logInInfo.get(0),logInInfo.get(1)))) {
             User newLogIn = SaveUser.users.get(user.HashCode());
             System.out.println("Welcome :)");

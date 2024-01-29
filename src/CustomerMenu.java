@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class CustomerMenu {
     public transient List<String> keyList=new ArrayList<>();
@@ -41,22 +38,20 @@ public class CustomerMenu {
         keyList.add("See Favorite Products");
     }
     public void seeCategories(){
-        Map <String, SaveProduct.Category> categoryMap=SaveProduct.categories;
         int numberCategory=1;
-        for (String key: categoryMap.keySet()){
-            System.out.println("Category "+key+"'s Products");
-            SaveProduct.Category category=categoryMap.get(key);
-            for (String string:category.productMap.keySet()){
-                Product product=category.productMap.get(string);
-                for(String str: product.info.keySet()){
-                    System.out.println(str+": "+product.info.get(str));
-                }
+        for (String key: SaveProduct.Category.categoryNameList){
+            System.out.println(numberCategory+++") "+key);
             }
+        System.out.println("Which Category's Product Do You Want to see?");
+        int select=new Scanner(System.in).nextInt();
+        String category=SaveProduct.Category.categoryNameList.get(select-1);
+
         }
-    }
     public void seeFavorite(){
         Map<String,Product> favorites=Product.getProductsFromFile(customer.info.get("UserName")+".json");
+        int i=1;
         for(String see: favorites.keySet()){
+            System.out.println(i+++")");
             Product product=favorites.get(see);
             for (String str: product.info.keySet()){
                 System.out.println(str + ": "+product.info.get(str));

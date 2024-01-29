@@ -37,11 +37,14 @@ public class Seller extends User{
         while (!correct) {
             for (String input : Product.keyList) {
                 System.out.println("Enter Product's " + input + ": ");
-                str = scanner.nextLine();
+                str = scanner.next();
                 if (input.equals("Category"))
-                    SaveProduct.Category.categoryNameList.add(str);
+                    if(!SaveProduct.Category.categoryNameList.contains(str)){
+                        SaveProduct.Category.categoryNameList.add(str);
+                    }
                 product.info.put(input, str);
             }
+
             System.out.println("Your Product Information is as follows:");
             for (String input : Product.keyList) {
                 System.out.println(input + ": " + product.info.get(input));
@@ -61,7 +64,8 @@ public class Seller extends User{
                     Product.saveToFile();
                     Seller.saveToFileProducts(seller,seller.info.get("SellerName")+".json");
                     if (SaveProduct.categories.containsKey(product.info.get("Category"))){
-                        SaveProduct.categories.get("Category").productMap.put(key,product);
+                        SaveProduct.categories.get(product.info.get("Category")).productMap.put(key,product);
+                        SaveProduct.saveToFileProducts(product.info.get("Category"));
                     }else{
                         SaveProduct.Category category=new SaveProduct.Category(product.info.get("Category"));
                         category.productMap.put(key,product);

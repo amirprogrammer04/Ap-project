@@ -63,6 +63,7 @@ public class Program {
             if (input.equals("A")) {
                 Customer customer=new Customer();
                 customer.setInfo(customer);
+
                 customer.addUser(customer);
                 CustomerMenu environment=new CustomerMenu(customer);
                 environment.seeTheMainEnvironment();
