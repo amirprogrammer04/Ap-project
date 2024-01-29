@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CustomerMenu {
@@ -22,14 +23,27 @@ public class CustomerMenu {
         if(selectInt==1){
             searchProducts();
             seeTheMainEnvironment();
+        } else if (selectInt == 2) {
+            seeFavorite();
+            seeTheMainEnvironment();
         }
-    }catch (Exception e){
-        System.out.println("Invalid Input. Please Enter Valid input.");
+        }catch (Exception e){
+        e.printStackTrace();
         seeTheMainEnvironment();
     }
     }
     public void setKeyList(){
         keyList.add("Search Products");
+        keyList.add("See Favorite Products");
+    }
+    public void seeFavorite(){
+        Map<String,Product> favorites=Product.getProductsFromFile(customer.info.get("UserName")+".json");
+        for(String see: favorites.keySet()){
+            Product product=favorites.get(see);
+            for (String str: product.info.keySet()){
+                System.out.println(str + ": "+product.info.get(str));
+            }
+        }
     }
     public void searchProducts(){
         ArrayList<Product> theFoundProducts= Product.findProduct();
@@ -48,6 +62,7 @@ public class CustomerMenu {
             String answer=scanner.next();
             if (answer.equals("Y"))
                 customer.products.put(selectedProduct.HashCode(),selectedProduct);
+                Seller.saveToFileProducts(customer,customer.info.get("UserName")+".json");
                 seeTheMainEnvironment();
         }
     }

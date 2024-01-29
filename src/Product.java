@@ -109,15 +109,16 @@ public class Product {
         Scanner scanner=new Scanner(System.in);
         SaveProduct.products=getProductsFromFile();
         System.out.println("Enter: ");
-        productName=scanner.nextLine();
+        productName=scanner.next();
         Collection<Product> productList=SaveProduct.products.values();
         int number=1;
         for (Product product: productList){
-            productArrayList.add(product);
             if(product.info.get("Name").equals(productName)){
+                productArrayList.add(product);
                 Collection<String> information=product.info.keySet();
                 System.out.println((number++)+")");
                 for (String k: information){
+                    if (k.equals("Name")||k.equals("Code"))
                     System.out.println(k+": "+product.info.get(k));
                 }
             }

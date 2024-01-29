@@ -20,7 +20,7 @@ public class Seller extends User{
         keyList.add("E-mail Address");
         keyList.add("Password");
     }
-    public static void saveToFileProducts(Seller seller,String fileName){
+    public static void saveToFileProducts(User seller,String fileName){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(seller.products);
         try (FileWriter writer = new FileWriter(fileName)) {

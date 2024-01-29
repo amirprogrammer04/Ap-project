@@ -1,35 +1,14 @@
 {
-  "fe1ce6bf9f6c0da15437195522909eddaf46bb75f7e0cacbb5b01046c790f74e": {
+  "0529bab1330edcf8781b4d4aa029c9be4ef6159e4c5dda64e32d156eb4d94141": {
     "info": {
-      "Status": "t",
-      "Colors": "s",
-      "Category": "my",
-      "Seller": "me",
-      "Code": "a",
-      "Date Of Produce": "2",
-      "Name": "v"
-    }
-  },
-  "f2afd1cacb5441a5e65a7a460a5f9898b7b98b08aa6323a2e53c8b9a9686cd86": {
-    "info": {
-      "Status": "q",
-      "Colors": "y",
-      "Category": "y",
-      "Seller": "y",
-      "Code": "y",
-      "Date Of Produce": "y",
-      "Name": "y"
-    }
-  },
-  "282b91e08fd50a38f030dbbdee7898d36dd523605d94d9dd6e50b298e47844be": {
-    "info": {
-      "Status": "e",
-      "Colors": "e",
-      "Category": "e",
-      "Seller": "e",
-      "Code": "e",
-      "Date Of Produce": "e",
-      "Name": "e"
+      "Status": "Python",
+      "Colors": "product",
+      "Category": "product",
+      "Price": "product",
+      "Seller": "product",
+      "Code": "product",
+      "Date Of Produce": "product",
+      "Name": "product"
     }
   }
 }
