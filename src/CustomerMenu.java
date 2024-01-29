@@ -23,7 +23,10 @@ public class CustomerMenu {
         if(selectInt==1){
             searchProducts();
             seeTheMainEnvironment();
-        } else if (selectInt == 2) {
+        } else if(selectInt==2){
+            seeCategories();
+            seeTheMainEnvironment();
+        } else if (selectInt == 3) {
             seeFavorite();
             seeTheMainEnvironment();
         }
@@ -34,7 +37,22 @@ public class CustomerMenu {
     }
     public void setKeyList(){
         keyList.add("Search Products");
+        keyList.add("See Categories");
         keyList.add("See Favorite Products");
+    }
+    public void seeCategories(){
+        Map <String, SaveProduct.Category> categoryMap=SaveProduct.categories;
+        int numberCategory=1;
+        for (String key: categoryMap.keySet()){
+            System.out.println("Category "+key+"'s Products");
+            SaveProduct.Category category=categoryMap.get(key);
+            for (String string:category.productMap.keySet()){
+                Product product=category.productMap.get(string);
+                for(String str: product.info.keySet()){
+                    System.out.println(str+": "+product.info.get(str));
+                }
+            }
+        }
     }
     public void seeFavorite(){
         Map<String,Product> favorites=Product.getProductsFromFile(customer.info.get("UserName")+".json");

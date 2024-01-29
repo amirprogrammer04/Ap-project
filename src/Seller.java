@@ -38,6 +38,8 @@ public class Seller extends User{
             for (String input : Product.keyList) {
                 System.out.println("Enter Product's " + input + ": ");
                 str = scanner.nextLine();
+                if (input.equals("Category"))
+                    SaveProduct.Category.categoryNameList.add(str);
                 product.info.put(input, str);
             }
             System.out.println("Your Product Information is as follows:");
@@ -58,6 +60,14 @@ public class Seller extends User{
                     seller.products.put(key,product);
                     Product.saveToFile();
                     Seller.saveToFileProducts(seller,seller.info.get("SellerName")+".json");
+                    if (SaveProduct.categories.containsKey(product.info.get("Category"))){
+                        SaveProduct.categories.get("Category").productMap.put(key,product);
+                    }else{
+                        SaveProduct.Category category=new SaveProduct.Category(product.info.get("Category"));
+                        category.productMap.put(key,product);
+                        SaveProduct.categories.put(product.info.get("Category"),category);
+                        SaveProduct.saveToFileProducts(category,product.info.get("Category")+".json");
+                    }
                     flag=false;
                 } else if (str.equals("N")) {
                     product.info.clear();

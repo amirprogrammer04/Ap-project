@@ -53,7 +53,8 @@ public class Product {
     } catch (IOException e) {
         return new HashMap<>(); // Return an empty map if file does not exist or cannot be read
     }
-}    public static Map<String, Product> getProductsFromFile(String fileName) {
+}
+public static Map<String, Product> getProductsFromFile(String fileName) {
     try (FileReader reader = new FileReader(fileName)) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, Product>>(){}.getType();
