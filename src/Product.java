@@ -31,6 +31,7 @@ public static Map<String, Product> getProductsFromFile(String fileName) {
         return new HashMap<>(); // Return an empty map if file does not exist or cannot be read
     }
 }
+
     public static void setKeyList(){
         keyList.add("Name");
         keyList.add("Code");

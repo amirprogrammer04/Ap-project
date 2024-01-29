@@ -44,7 +44,7 @@ public class Seller extends User{
                     }
                 product.info.put(input, str);
             }
-
+                SaveProduct.saveToFileCategoryNameList();
             System.out.println("Your Product Information is as follows:");
             for (String input : Product.keyList) {
                 System.out.println(input + ": " + product.info.get(input));

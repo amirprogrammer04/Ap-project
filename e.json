@@ -1,0 +1,26 @@
+{
+  "12b0f0dcaefb10c02a83aa9adb025978ddb5512dc04eb39df6811c6a6bf9770c": {
+    "info": {
+      "Status": "r",
+      "Colors": "r",
+      "Category": "e",
+      "Price": "r",
+      "Seller": "r",
+      "Code": "r",
+      "Date Of Produce": "r",
+      "Name": "r"
+    }
+  },
+  "282b91e08fd50a38f030dbbdee7898d36dd523605d94d9dd6e50b298e47844be": {
+    "info": {
+      "Status": "e",
+      "Colors": "e",
+      "Category": "e",
+      "Price": "e",
+      "Seller": "e",
+      "Code": "e",
+      "Date Of Produce": "e",
+      "Name": "e"
+    }
+  }
+}

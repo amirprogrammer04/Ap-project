@@ -39,13 +39,22 @@ public class CustomerMenu {
     }
     public void seeCategories(){
         int numberCategory=1;
-        for (String key: SaveProduct.Category.categoryNameList){
+        ArrayList <String > list=SaveProduct.getCategoryList();
+        for (String key: list){
             System.out.println(numberCategory+++") "+key);
             }
         System.out.println("Which Category's Product Do You Want to see?");
-        int select=new Scanner(System.in).nextInt();
-        String category=SaveProduct.Category.categoryNameList.get(select-1);
-
+        Scanner scanner=new Scanner(System.in);
+        int select=scanner.nextInt();
+        Map <String,Product> productMap=SaveProduct.getCategoryProduct(list.get(select-1));
+        int productCounter=0;
+        for(String str:productMap.keySet()){
+            Product product=productMap.get(str);
+            System.out.println("Product "+(++productCounter)+": ");
+            for(String string: product.info.keySet()){
+                System.out.println(string+": "+product.info.get(string));
+            }
+        }
         }
     public void seeFavorite(){
         Map<String,Product> favorites=Product.getProductsFromFile(customer.info.get("UserName")+".json");

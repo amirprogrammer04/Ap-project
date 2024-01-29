@@ -1,9 +1,12 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import jdk.jfr.Category;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.*;
 
 public class SaveProduct {
@@ -37,5 +40,31 @@ public class SaveProduct {
             e.printStackTrace();
         }
     }
-    public static void saveToFileCategoryNameList
+    public static void saveToFileCategoryNameList(){
+         Gson gson=new GsonBuilder().setPrettyPrinting().create();
+         String json=gson.toJson(Category.categoryNameList);
+        try (FileWriter writer = new FileWriter("Category.json")) {
+            writer.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static ArrayList<String> getCategoryList() {
+        try (FileReader reader = new FileReader("Category.json")) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<ArrayList<String>>(){}.getType();
+            return gson.fromJson(reader, type);
+        } catch (IOException e) {
+            return new ArrayList<String>();
+        }
+    }
+    public static HashMap<String,Product> getCategoryProduct(String fileName) {
+        try (FileReader reader = new FileReader(fileName+".json")) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<HashMap<String,Product>>(){}.getType();
+            return gson.fromJson(reader, type);
+        } catch (IOException e) {
+            return new HashMap<>();
+        }
+    }
 }
