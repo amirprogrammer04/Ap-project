@@ -1,3 +1,11 @@
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.*;
 
 public class CustomerMenu {
@@ -26,6 +34,10 @@ public class CustomerMenu {
         } else if (selectInt == 3) {
             seeFavorite();
             seeTheMainEnvironment();
+        } else if (selectInt==4) {
+            if(!seeCart())
+                System.out.println("Empty Cart!\n");
+            seeTheMainEnvironment();
         }
         }catch (Exception e){
         e.printStackTrace();
@@ -36,6 +48,7 @@ public class CustomerMenu {
         keyList.add("Search Products");
         keyList.add("See Categories");
         keyList.add("See Favorite Products");
+        keyList.add("See Cart");
     }
     public void seeCategories(){
         int numberCategory=1;
@@ -57,14 +70,59 @@ public class CustomerMenu {
         }
         }
     public void seeFavorite(){
-        Map<String,Product> favorites=Product.getProductsFromFile(customer.info.get("UserName")+".json");
+        Map<String,Product> favorites=Product.getProductsFromFile(customer.info.get("UserName"));
         int i=1;
+        List<String> arrayList=new ArrayList<>();
         for(String see: favorites.keySet()){
             System.out.println(i+++")");
+            arrayList.add(see);
             Product product=favorites.get(see);
             for (String str: product.info.keySet()){
                 System.out.println(str + ": "+product.info.get(str));
             }
+        }
+        System.out.println("Do You Want To Add A Product To Your Cart?(Y/N) ");
+        Scanner scanner=new Scanner(System.in);
+        String input=scanner.next();
+        if (input.equals("Y")){
+               System.out.println("Enter The Number Of The Product You Want To Add To Your Cart.");
+               String string=scanner.next();
+               Product product=favorites.get(arrayList.get(Integer.parseInt(string)-1));
+               Map<String,Product> hashmap=getCart();
+               hashmap.put(product.HashCode(),product);
+                saveToFileCart(hashmap);
+        }
+    }
+    public boolean seeCart(){
+        Map <String,Product> cart=getCart();
+        int i=0;
+        if (!cart.isEmpty()){
+            for (String str: cart.keySet()){
+                Product product=cart.get(str);
+                System.out.println("Product "+(++i)+") ");
+                System.out.println("Name: "+product.info.get("Name")+"\n"+"Code: "+product.info.get("Code"));
+            }
+            return true;
+        }
+        else
+            return false;
+    }
+    public void saveToFileCart(Map<String,Product> map){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(map);
+        try (FileWriter writer = new FileWriter(customer.info.get("FirstName")+"Cart"+".json")) {
+            writer.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public Map<String,Product> getCart(){
+        try (FileReader reader = new FileReader(customer.info.get("FirstName")+"Cart"+".json")) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<Map<String, Product>>(){}.getType();
+            return gson.fromJson(reader, type);
+        } catch (IOException e) {
+            return new HashMap<>(); // Return an empty map if file does not exist or cannot be read
         }
     }
     public void searchProducts(){

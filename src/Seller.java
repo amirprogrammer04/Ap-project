@@ -56,8 +56,7 @@ public class Seller extends User{
                 str = scanner.next();
                 if (str.equals("Y")) {
                     correct = true;
-                    seller.products.put(product.HashCode(),product);
-                    seller.products=Product.getProductsFromFile(seller.info.get("SellerName")+".json");
+                    seller.products=Product.getProductsFromFile(seller.info.get("SellerName"));
                     String key= product.HashCode();
                     SaveProduct.products.put(key,product);
                     seller.products.put(key,product);
