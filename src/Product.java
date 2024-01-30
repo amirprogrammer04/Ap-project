@@ -14,7 +14,7 @@ public class Product {
     public Map<String,String> info=new HashMap<>();
     public static transient List<String> keyList=new ArrayList<>();
     public static Map<String, Product> getProductsFromFile() {
-    try (FileReader reader = new FileReader("products.json")) {
+    try (FileReader reader = new FileReader("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+"products.json")) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, Product>>(){}.getType();
         return gson.fromJson(reader, type);
@@ -23,7 +23,7 @@ public class Product {
     }
 }
 public static Map<String, Product> getProductsFromFile(String fileName) {
-    try (FileReader reader = new FileReader(fileName+".json")) {
+    try (FileReader reader = new FileReader("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+fileName+".json")) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<String, Product>>(){}.getType();
         return gson.fromJson(reader, type);
@@ -67,7 +67,7 @@ public static Map<String, Product> getProductsFromFile(String fileName) {
     public static void saveToFile() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(SaveProduct.products);
-        try (FileWriter writer = new FileWriter("products.json")) {
+        try (FileWriter writer = new FileWriter("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+"products.json")) {
             writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();

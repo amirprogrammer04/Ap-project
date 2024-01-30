@@ -25,7 +25,7 @@ public class SaveProduct {
     public static void saveToFileProducts(Category category,String fileName){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(category.productMap);
-        try (FileWriter writer = new FileWriter(fileName)) {
+        try (FileWriter writer = new FileWriter("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+fileName)) {
             writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,7 +34,7 @@ public class SaveProduct {
     public static void saveToFileProducts(String fileName){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(categories.get(fileName).productMap);
-        try (FileWriter writer = new FileWriter(fileName+".json")) {
+        try (FileWriter writer = new FileWriter("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+fileName+".json")) {
             writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();
@@ -43,14 +43,14 @@ public class SaveProduct {
     public static void saveToFileCategoryNameList(){
          Gson gson=new GsonBuilder().setPrettyPrinting().create();
          String json=gson.toJson(Category.categoryNameList);
-        try (FileWriter writer = new FileWriter("Category.json")) {
+        try (FileWriter writer = new FileWriter("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+"Category.json")) {
             writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     public static ArrayList<String> getCategoryList() {
-        try (FileReader reader = new FileReader("Category.json")) {
+        try (FileReader reader = new FileReader("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+"Category.json")) {
             Gson gson = new Gson();
             Type type = new TypeToken<ArrayList<String>>(){}.getType();
             return gson.fromJson(reader, type);
@@ -59,7 +59,7 @@ public class SaveProduct {
         }
     }
     public static HashMap<String,Product> getCategoryProduct(String fileName) {
-        try (FileReader reader = new FileReader(fileName+".json")) {
+        try (FileReader reader = new FileReader("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+fileName+".json")) {
             Gson gson = new Gson();
             Type type = new TypeToken<HashMap<String,Product>>(){}.getType();
             return gson.fromJson(reader, type);

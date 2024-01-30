@@ -98,7 +98,7 @@ public class User {
     }
     public void setKeyList(){}
     public static Map<String, User> getUsersFromFile() {
-        try (FileReader reader = new FileReader("users.json")) {
+        try (FileReader reader = new FileReader("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+"users.json")) {
             Gson gson = new Gson();
             Type type = new TypeToken<Map<String, User>>(){}.getType();
             return gson.fromJson(reader, type);
@@ -114,7 +114,7 @@ public class User {
     public static void saveToFile() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(SaveUser.users);
-        try (FileWriter writer = new FileWriter("users.json")) {
+        try (FileWriter writer = new FileWriter("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+"users.json")) {
             writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();

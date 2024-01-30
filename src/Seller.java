@@ -23,7 +23,7 @@ public class Seller extends User{
     public static void saveToFileProducts(User seller,String fileName){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(seller.products);
-        try (FileWriter writer = new FileWriter(fileName)) {
+        try (FileWriter writer = new FileWriter("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+fileName)) {
             writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();

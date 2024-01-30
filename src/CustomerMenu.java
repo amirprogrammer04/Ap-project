@@ -40,7 +40,7 @@ public class CustomerMenu {
             seeTheMainEnvironment();
         }
         }catch (Exception e){
-        e.printStackTrace();
+        System.out.println("Invalid Input!");
         seeTheMainEnvironment();
     }
     }
@@ -133,14 +133,14 @@ public class CustomerMenu {
     public void saveToFileCart(Map<String,Product> map){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(map);
-        try (FileWriter writer = new FileWriter(customer.info.get("FirstName")+"Cart"+".json")) {
+        try (FileWriter writer = new FileWriter("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+customer.info.get("FirstName")+"Cart"+".json")) {
             writer.write(json);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     public Map<String,Product> getCart(){
-        try (FileReader reader = new FileReader(customer.info.get("FirstName")+"Cart"+".json")) {
+        try (FileReader reader = new FileReader("C:\\Users\\pc\\Downloads\\FinalProj\\Sources\\"+customer.info.get("FirstName")+"Cart"+".json")) {
             Gson gson = new Gson();
             Type type = new TypeToken<Map<String, Product>>(){}.getType();
             return gson.fromJson(reader, type);
