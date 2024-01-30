@@ -84,14 +84,24 @@ public class CustomerMenu {
         System.out.println("Do You Want To Add A Product To Your Cart?(Y/N) ");
         Scanner scanner=new Scanner(System.in);
         String input=scanner.next();
-        if (input.equals("Y")){
-               System.out.println("Enter The Number Of The Product You Want To Add To Your Cart.");
-               String string=scanner.next();
-               Product product=favorites.get(arrayList.get(Integer.parseInt(string)-1));
-               Map<String,Product> hashmap=getCart();
-               hashmap.put(product.HashCode(),product);
+        boolean flag=false;
+        do {
+            flag=false;
+            if (input.equals("Y")) {
+                System.out.println("Enter The Number Of The Product You Want To Add To Your Cart.");
+                String string = scanner.next();
+                Product product = favorites.get(arrayList.get(Integer.parseInt(string) - 1));
+                Map<String, Product> hashmap = getCart();
+                hashmap.put(product.HashCode(), product);
+//                Set<String> set=hashmap.keySet();
+//                for(String s: set){
+//                    System.out.println(hashmap.get(s).info.get("Name"));
+//                }
                 saveToFileCart(hashmap);
-        }
+            } else if (input.equals("N")) {
+            } else
+                flag=true;
+        }while (flag);
     }
     public boolean seeCart(){
         Map <String,Product> cart=getCart();
@@ -102,7 +112,20 @@ public class CustomerMenu {
                 System.out.println("Product "+(++i)+") ");
                 System.out.println("Name: "+product.info.get("Name")+"\n"+"Code: "+product.info.get("Code"));
             }
-            return true;
+            boolean flag=false;
+            do{
+                flag=false;
+                System.out.println("Do You Want To Finalize Buying Your Cart?(Y/N)");
+            Scanner scanner=new Scanner(System.in);
+            String input=scanner.next();
+            if(input.equals("Y")){
+                cart.clear();
+                saveToFileCart(cart);
+            } else if (input.equals("N")) {
+            }else
+                flag=true;
+            }while (flag);
+                return true;
         }
         else
             return false;
