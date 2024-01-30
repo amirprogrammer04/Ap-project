@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Program {
+    // Warning: if you pulled this code from github, you may make some changes in the direction of FileWriter & FileReader
     public static void main(String[] args) {
         System.out.println("Welcome to your home\nWhich feature do you want?");
         List <String> initialList=new ArrayList<String>();
